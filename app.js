@@ -27,7 +27,7 @@ const port = 4000
 
 app.get('/details',async(request,response)=>{
    const getEmployeesQuery=`SELECT * FROM employees;`;
-   const details=await db.get(getEmployeesQuery);
+   const details=await db.all(getEmployeesQuery);
    response.send(details)
 })
 
