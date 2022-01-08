@@ -24,12 +24,15 @@ const initailizeDBAndSever=async()=>{
 initailizeDBAndSever();
 
 const port = 4000
+// get api//
 
 app.get('/details',async(request,response)=>{
    const getEmployeesQuery=`SELECT * FROM employees;`;
    const details=await db.all(getEmployeesQuery);
    response.send(details)
-})
+});
+
+//post api//
 
 app.post('/create',async (request,response)=>{
     const employeeDetails=request.body;
@@ -49,6 +52,8 @@ app.post('/create',async (request,response)=>{
    response.status(200).json({addEmployeeDetail});
 });
 
+//update api//
+
 app.put("/update/:id",async(request,response)=>{
     const {id}=request.params;
     const employeeDetails=request.body;
@@ -65,6 +70,8 @@ app.put("/update/:id",async(request,response)=>{
     const updateresponse=await db.run(updateEmployeeDetails);
     response.status(200).json({updateresponse});
 });
+
+//delete api//
 
 app.delete("/details/:id",async(request,response)=>{
     const {id}=request.params;
